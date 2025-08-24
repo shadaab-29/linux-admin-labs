@@ -34,15 +34,13 @@ useradd username
 useradd -m -s /bin/bash alice # with home dir & shell
 
 markdown
-Copy
-Edit
+
 
 - **Set/Change password**
 passwd username
 
 markdown
-Copy
-Edit
+
 
 - **Modify user**
 usermod -s /bin/zsh alice # change shell
@@ -50,30 +48,26 @@ usermod -d /new/home alice # change home dir
 usermod -aG developers alice # add to secondary group
 
 markdown
-Copy
-Edit
+
 
 - **Delete user**
 userdel username
 userdel -r username # also remove home dir
 
 markdown
-Copy
-Edit
+
 
 - **Switch user**
 su - username
 
-sql
-Copy
-Edit
+s
+
+
 
 - **Check current user**
 whoami
 
-yaml
-Copy
-Edit
+
 
 ---
 
@@ -81,23 +75,16 @@ Edit
 - **Add group**
 groupadd developers
 
-markdown
-Copy
-Edit
+
 
 - **Delete group**
 groupdel developers
 
-markdown
-Copy
-Edit
+
 
 - **Modify group**
 groupmod -n newgroup oldgroup
 
-yaml
-Copy
-Edit
 
 ---
 
@@ -105,30 +92,21 @@ Edit
 - **User info**
 id alice
 
-markdown
-Copy
-Edit
+
 
 - **Groups of a user**
 groups alice
 
-markdown
-Copy
-Edit
+
 
 - **Change primary group**
 usermod -g developers alice
 
-pgsql
-Copy
-Edit
+
 
 - **Add to secondary group**
 usermod -aG docker alice
 
-yaml
-Copy
-Edit
 
 ---
 
@@ -136,37 +114,23 @@ Edit
 - **Set/change group password**
 gpasswd developers
 
-pgsql
-Copy
-Edit
+
 
 - **Add user to group**
 gpasswd -a alice developers
 
-sql
-Copy
-Edit
 
 - **Remove user from group**
 gpasswd -d alice developers
 
-markdown
-Copy
-Edit
+
 
 - **Assign group admin**
 gpasswd -A bob developers
 
-markdown
-Copy
-Edit
 
 - **Set group members**
 gpasswd -M "alice,bob" developers
-
-yaml
-Copy
-Edit
 
 ---
 
@@ -183,5 +147,3 @@ Edit
 usermod -aG sudo alice # Debian/Ubuntu
 usermod -aG wheel alice # RHEL/CentOS
 
-Copy
-Edit
