@@ -1,132 +1,187 @@
 # 🐧 Linux User & Group Management Cheat Sheet
 
+## 🔹 Quick Reference Table
+
+| Command | Description |
+|---------|-------------|
+| `useradd username` | Create a new user |
+| `passwd username` | Set/change user password |
+| `usermod -aG group user` | Add user to a secondary group |
+| `usermod -g group user` | Change user’s primary group |
+| `usermod -d /path user` | Change home directory |
+| `usermod -s /bin/shell user` | Change login shell |
+| `userdel username` | Delete user (keep home dir) |
+| `userdel -r username` | Delete user + home dir |
+| `groupadd groupname` | Create a group |
+| `groupdel groupname` | Delete a group |
+| `groupmod -n new old` | Rename group |
+| `id username` | Show UID, GID, groups |
+| `groups username` | Show group memberships |
+| `gpasswd -a user group` | Add user to group |
+| `gpasswd -d user group` | Remove user from group |
+| `gpasswd -A user group` | Set group admin |
+| `gpasswd -M "u1,u2"` | Set multiple group members |
+| `whoami` | Show current logged-in user |
+| `su - user` | Switch user |
+| `usermod -aG sudo user` | Add user to sudo (Debian/Ubuntu) |
+| `usermod -aG wheel user` | Add user to sudo (RHEL/CentOS) |
+
+---
+
 ## 🔹 User Management
 - **Add user**
-  ```bash
-  useradd username
-  useradd -m -s /bin/bash alice   # with home dir & shell
-Set/Change password
+useradd username
+useradd -m -s /bin/bash alice # with home dir & shell
 
-bash
+markdown
 Copy
 Edit
+
+- **Set/Change password**
 passwd username
-Modify user
 
-bash
+markdown
 Copy
 Edit
-usermod -s /bin/zsh alice       # change shell
-usermod -d /new/home alice      # change home dir
-usermod -aG developers alice    # add to secondary group
-Delete user
 
-bash
+- **Modify user**
+usermod -s /bin/zsh alice # change shell
+usermod -d /new/home alice # change home dir
+usermod -aG developers alice # add to secondary group
+
+markdown
 Copy
 Edit
+
+- **Delete user**
 userdel username
-userdel -r username             # also remove home dir
-Switch user
+userdel -r username # also remove home dir
 
-bash
+markdown
 Copy
 Edit
+
+- **Switch user**
 su - username
-Check current user
 
-bash
+sql
 Copy
 Edit
+
+- **Check current user**
 whoami
-🔹 Group Management
-Add group
 
-bash
+yaml
 Copy
 Edit
+
+---
+
+## 🔹 Group Management
+- **Add group**
 groupadd developers
-Delete group
 
-bash
+markdown
 Copy
 Edit
+
+- **Delete group**
 groupdel developers
-Modify group
 
-bash
+markdown
 Copy
 Edit
+
+- **Modify group**
 groupmod -n newgroup oldgroup
-🔹 Membership & Info
-User info
 
-bash
+yaml
 Copy
 Edit
+
+---
+
+## 🔹 Membership & Info
+- **User info**
 id alice
-Groups of a user
 
-bash
+markdown
 Copy
 Edit
+
+- **Groups of a user**
 groups alice
-Change primary group
 
-bash
+markdown
 Copy
 Edit
+
+- **Change primary group**
 usermod -g developers alice
-Add to secondary group
 
-bash
+pgsql
 Copy
 Edit
+
+- **Add to secondary group**
 usermod -aG docker alice
-🔹 gpasswd – Group Administration
-Set/change group password
 
-bash
+yaml
 Copy
 Edit
+
+---
+
+## 🔹 `gpasswd` – Group Administration
+- **Set/change group password**
 gpasswd developers
-Add user to group
 
-bash
+pgsql
 Copy
 Edit
+
+- **Add user to group**
 gpasswd -a alice developers
-Remove user from group
 
-bash
+sql
 Copy
 Edit
+
+- **Remove user from group**
 gpasswd -d alice developers
-Assign group admin
 
-bash
+markdown
 Copy
 Edit
+
+- **Assign group admin**
 gpasswd -A bob developers
-Set group members
 
-bash
+markdown
 Copy
 Edit
+
+- **Set group members**
 gpasswd -M "alice,bob" developers
-🔹 Files & Configs
-/etc/passwd → user accounts
 
-/etc/shadow → passwords (hashed)
-
-/etc/group → groups
-
-/etc/sudoers → sudo rules (edit via visudo)
-
-🔹 Sudo Permissions
-Add user to sudoers:
-
-bash
+yaml
 Copy
 Edit
-usermod -aG sudo alice      # Debian/Ubuntu
-usermod -aG wheel alice     # RHEL/CentOS
+
+---
+
+## 🔹 Files & Configs
+- `/etc/passwd` → user accounts  
+- `/etc/shadow` → passwords (hashed)  
+- `/etc/group` → groups  
+- `/etc/sudoers` → sudo rules (edit via `visudo`)  
+
+---
+
+## 🔹 Sudo Permissions
+- Add user to sudoers:
+usermod -aG sudo alice # Debian/Ubuntu
+usermod -aG wheel alice # RHEL/CentOS
+
+Copy
+Edit
