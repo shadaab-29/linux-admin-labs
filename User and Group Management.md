@@ -111,3 +111,6 @@ gpasswd -M "alice,bob" developers
 - Add user to sudoers:
 usermod -aG sudo alice # Debian/Ubuntu
 usermod -aG wheel alice # RHEL/CentOS
+
+
+Thank You
