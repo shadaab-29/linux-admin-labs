@@ -1,80 +1,41 @@
-# 📦 Linux Package Management Cheat Sheet (RedHat vs Ubuntu)
+📦 Linux Package Management Cheat Sheet (RedHat vs Ubuntu)
 
 This cheat sheet compares common package management commands for:
 
-- **RedHat / CentOS / Fedora** → `yum` / `dnf`
-- **Ubuntu / Debian** → `apt`
+RedHat / CentOS / Fedora → yum / dnf
 
----
+Ubuntu / Debian → apt
 
-## 🔄 Update & Upgrade
-
-| Task | RedHat (YUM/DNF) | Ubuntu (APT) | Options | Example |
-|------|------------------|--------------|---------|---------|
-| Update package index | `dnf makecache` | `apt update` | `-y` → auto confirm | `sudo apt update` |
-| Upgrade all packages | `dnf upgrade` | `apt upgrade` | `-y` → auto confirm | `sudo apt upgrade -y` |
-| Full distribution upgrade | `dnf upgrade --refresh` | `apt full-upgrade` | `--refresh` → refresh cache | `sudo apt full-upgrade -y` |
-
----
-
-## 📥 Install & Reinstall
-
-| Task | RedHat (YUM/DNF) | Ubuntu (APT) | Options | Example |
-|------|------------------|--------------|---------|---------|
-| Install a package | `dnf install pkg` | `apt install pkg` | `-y` → auto confirm | `sudo apt install nginx -y` |
-| Reinstall a package | `dnf reinstall pkg` | `apt reinstall pkg` | `-y` → auto confirm | `sudo apt reinstall curl` |
-| Install from file | `rpm -ivh file.rpm` | `dpkg -i file.deb` | `-i` → install <br>`-v` → verbose <br>`-h` → progress | `sudo dpkg -i file.deb` |
-
----
-
-## ❌ Remove Packages
-
-| Task | RedHat (YUM/DNF) | Ubuntu (APT) | Options | Example |
-|------|------------------|--------------|---------|---------|
-| Remove a package | `dnf remove pkg` | `apt remove pkg` | `-y` → auto confirm | `sudo apt remove nginx -y` |
-| Remove package + config | `dnf remove pkg` | `apt purge pkg` | `-y` → auto confirm | `sudo apt purge nginx -y` |
-| Remove unused deps | `dnf autoremove` | `apt autoremove` | `-y` → auto confirm | `sudo apt autoremove -y` |
-
----
-
-## 🔍 Search & Info
-
-| Task | RedHat (YUM/DNF) | Ubuntu (APT) | Options | Example |
-|------|------------------|--------------|---------|---------|
-| Search for a package | `dnf search pkg` | `apt search pkg` | `--showduplicates` (dnf) | `apt search apache2` |
-| Show package info | `dnf info pkg` | `apt show pkg` | — | `apt show curl` |
-| List installed packages | `dnf list installed` | `dpkg -l` | `| grep` → filter results | `dpkg -l \| grep nginx` |
-
----
-
-## 📂 File & Ownership
-
-| Task | RedHat | Ubuntu | Example |
-|------|--------|--------|---------|
-| List files in package | `rpm -ql pkg` | `dpkg -L pkg` | `dpkg -L apache2` |
-| Find which package owns a file | `rpm -qf /path/file` | `dpkg -S /path/file` | `dpkg -S /bin/ls` |
-
----
-
-## 🧹 Cleanup & Fix
-
-| Task | RedHat (YUM/DNF) | Ubuntu (APT) | Options | Example |
-|------|------------------|--------------|---------|---------|
-| Clean cache | `dnf clean all` | `apt clean` / `apt autoclean` | `all` → remove everything | `sudo apt clean` |
-| Check/Fix broken deps | `dnf check` | `apt --fix-broken install` | `--fix-broken` → repair | `sudo apt --fix-broken install` |
-
----
-
-## 📑 Repositories
-
-| Task | RedHat | Ubuntu | Example |
-|------|--------|--------|---------|
-| List repos | `dnf repolist` | `ls /etc/apt/sources.list.d/` | `cat /etc/apt/sources.list` |
-
----
-
-## ⚡ Notes
-
-- On **RHEL 8+**, `yum` is just a symlink to `dnf`.  
-- On **Ubuntu/Debian**, `apt` is for users, `apt-get` is more script-friendly.  
-- Always add `-y` in automation to skip prompts.  
+🔄 Update & Upgrade
+Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
+Update package index	dnf makecache	apt update	-y → auto confirm	sudo apt update
+Upgrade all packages	dnf upgrade	apt upgrade	-y → auto confirm	sudo apt upgrade -y
+Full distribution upgrade	dnf upgrade --refresh	apt full-upgrade	--refresh → refresh cache	sudo apt full-upgrade -y
+📥 Install & Reinstall
+Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
+Install a package	dnf install pkg	apt install pkg	-y → auto confirm	sudo apt install nginx -y
+Reinstall a package	dnf reinstall pkg	apt reinstall pkg	-y → auto confirm	sudo apt reinstall curl
+Install from file	rpm -ivh file.rpm	dpkg -i file.deb	-i → install
+-v → verbose
+-h → progress	sudo dpkg -i file.deb
+❌ Remove Packages
+Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
+Remove a package	dnf remove pkg	apt remove pkg	-y → auto confirm	sudo apt remove nginx -y
+Remove package + config	dnf remove pkg	apt purge pkg	-y → auto confirm	sudo apt purge nginx -y
+Remove unused deps	dnf autoremove	apt autoremove	-y → auto confirm	sudo apt autoremove -y
+🔍 Search & Info
+Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
+Search for a package	dnf search pkg	apt search pkg	--showduplicates (dnf)	apt search apache2
+Show package info	dnf info pkg	apt show pkg	—	apt show curl
+List installed packages	dnf list installed	dpkg -l	`	grep` → filter results
+📂 File & Ownership
+Task	RedHat	Ubuntu	Example
+List files in package	rpm -ql pkg	dpkg -L pkg	dpkg -L apache2
+Find which package owns a file	rpm -qf /path/file	dpkg -S /path/file	dpkg -S /bin/ls
+🧹 Cleanup & Fix
+Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
+Clean cache	dnf clean all	apt clean / apt autoclean	all → remove everything	sudo apt clean
+Check/Fix broken deps	dnf check	apt --fix-broken install	--fix-broken → repair	sudo apt --fix-broken install
+📑 Repositories
+Task	RedHat	Ubuntu	Example
+List repos	dnf repolist	ls /etc/apt/sources.list.d/	cat /etc/apt/sources.list
