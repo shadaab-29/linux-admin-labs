@@ -1,0 +1,41 @@
+# 📦 Linux Package Management Cheat Sheet (RedHat vs Ubuntu)
+
+This cheat sheet compares common package management commands side-by-side for **RedHat (RHEL/CentOS using YUM/DNF)** and **Ubuntu/Debian (APT)**.
+
+---
+
+## 🔑 Legend
+- **RHEL/CentOS** → `yum` / `dnf`  
+- **Ubuntu/Debian** → `apt`  
+
+---
+
+| Task | **RedHat (YUM/DNF)** | **Ubuntu (APT)** | Options | Description | Example |
+|------|----------------------|------------------|---------|-------------|---------|
+| Update package index | `yum makecache` <br> `dnf makecache` | `apt update` | `-y` → auto yes | Updates local package metadata | `sudo apt update` |
+| Upgrade all packages | `yum update` <br> `dnf upgrade` | `apt upgrade` | `-y` → auto confirm <br> `--security` (apt) → security only | Upgrades all installed packages | `sudo apt upgrade -y` |
+| Full distribution upgrade | `dnf upgrade --refresh` | `apt full-upgrade` | `--refresh` → refresh cache <br> `-y` → auto confirm | Upgrades packages and handles dependencies (kernel, removals) | `sudo apt full-upgrade -y` |
+| Install a package | `yum install pkg` <br> `dnf install pkg` | `apt install pkg` | `-y` → auto confirm <br> `--downloadonly` (dnf) → download only <br> `--dry-run` (apt) → simulate | Installs a package | `sudo apt install nginx -y` |
+| Reinstall a package | `yum reinstall pkg` <br> `dnf reinstall pkg` | `apt reinstall pkg` | `-y` → auto confirm | Reinstalls a given package | `sudo apt reinstall curl` |
+| Remove a package | `yum remove pkg` <br> `dnf remove pkg` | `apt remove pkg` | `-y` → auto confirm | Removes package (keeps config) | `sudo apt remove nginx -y` |
+| Remove pkg + config | `dnf remove pkg` | `apt purge pkg` | `-y` → auto confirm | Removes package with config | `sudo apt purge nginx -y` |
+| Search for a package | `yum search pkg` <br> `dnf search pkg` | `apt search pkg` | `--showduplicates` (dnf) → show multiple versions | Searches repositories | `apt search apache2` |
+| Show package info | `yum info pkg` <br> `dnf info pkg` | `apt show pkg` | — | Displays details of a package | `apt show curl` |
+| List installed packages | `yum list installed` <br> `dnf list installed` | `dpkg -l` | `| grep` → filter results | Shows installed packages | `dpkg -l \| grep nginx` |
+| List files in package | `rpm -ql pkg` | `dpkg -L pkg` | — | Lists installed files of a package | `dpkg -L apache2` |
+| Find which pkg owns file | `rpm -qf /path/file` | `dpkg -S /path/file` | — | Finds which package provides a file | `dpkg -S /bin/ls` |
+| Clean cache | `yum clean all` <br> `dnf clean all` | `apt clean` <br> `apt autoclean` | `all` → remove everything <br> `expire-cache` (dnf) | Removes cached packages | `sudo apt clean` |
+| Remove unused deps | `yum autoremove` <br> `dnf autoremove` | `apt autoremove` | `-y` → auto confirm | Removes unused dependencies | `sudo apt autoremove -y` |
+| List repos | `yum repolist` <br> `dnf repolist` | `ls /etc/apt/sources.list.d/` | `all` (dnf) → show all repos | Shows enabled repositories | `cat /etc/apt/sources.list` |
+| Install from file | `rpm -ivh pkg.rpm` | `dpkg -i pkg.deb` | `-i` → install <br> `-v` → verbose <br> `-h` → progress hash marks | Installs local package file | `sudo dpkg -i file.deb` |
+| Fix broken deps | `yum check` <br> `dnf check` | `apt --fix-broken install` | `--fix-broken` → repair | Repairs dependency issues | `sudo apt --fix-broken install` |
+
+---
+
+## ⚡ Notes
+- RHEL 8+ prefers `dnf` (but `yum` is still an alias).  
+- Ubuntu recommends `apt` for users, `apt-get` for scripts.  
+- Use `-y` for automation to skip interactive prompts.  
+
+---
+✅ Now you have a **side-by-side, GitHub-friendly cheatsheet** ready to paste.
