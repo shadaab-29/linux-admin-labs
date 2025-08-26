@@ -1,41 +1,19 @@
-📦 Linux Package Management Cheat Sheet (RedHat vs Ubuntu)
-
-This cheat sheet compares common package management commands for:
-
-RedHat / CentOS / Fedora → yum / dnf
-
-Ubuntu / Debian → apt
-
-🔄 Update & Upgrade
-Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
-Update package index	dnf makecache	apt update	-y → auto confirm	sudo apt update
-Upgrade all packages	dnf upgrade	apt upgrade	-y → auto confirm	sudo apt upgrade -y
-Full distribution upgrade	dnf upgrade --refresh	apt full-upgrade	--refresh → refresh cache	sudo apt full-upgrade -y
-📥 Install & Reinstall
-Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
-Install a package	dnf install pkg	apt install pkg	-y → auto confirm	sudo apt install nginx -y
-Reinstall a package	dnf reinstall pkg	apt reinstall pkg	-y → auto confirm	sudo apt reinstall curl
-Install from file	rpm -ivh file.rpm	dpkg -i file.deb	-i → install
--v → verbose
--h → progress	sudo dpkg -i file.deb
-❌ Remove Packages
-Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
-Remove a package	dnf remove pkg	apt remove pkg	-y → auto confirm	sudo apt remove nginx -y
-Remove package + config	dnf remove pkg	apt purge pkg	-y → auto confirm	sudo apt purge nginx -y
-Remove unused deps	dnf autoremove	apt autoremove	-y → auto confirm	sudo apt autoremove -y
-🔍 Search & Info
-Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
-Search for a package	dnf search pkg	apt search pkg	--showduplicates (dnf)	apt search apache2
-Show package info	dnf info pkg	apt show pkg	—	apt show curl
-List installed packages	dnf list installed	dpkg -l	`	grep` → filter results
-📂 File & Ownership
-Task	RedHat	Ubuntu	Example
-List files in package	rpm -ql pkg	dpkg -L pkg	dpkg -L apache2
-Find which package owns a file	rpm -qf /path/file	dpkg -S /path/file	dpkg -S /bin/ls
-🧹 Cleanup & Fix
-Task	RedHat (YUM/DNF)	Ubuntu (APT)	Options	Example
-Clean cache	dnf clean all	apt clean / apt autoclean	all → remove everything	sudo apt clean
-Check/Fix broken deps	dnf check	apt --fix-broken install	--fix-broken → repair	sudo apt --fix-broken install
-📑 Repositories
-Task	RedHat	Ubuntu	Example
-List repos	dnf repolist	ls /etc/apt/sources.list.d/	cat /etc/apt/sources.list
+| Task                           | **RedHat (YUM/DNF)**                              | **Ubuntu (APT)**                 | Description                                                   | Example                         |              |
+| ------------------------------ | ------------------------------------------------- | -------------------------------- | ------------------------------------------------------------- | ------------------------------- | ------------ |
+| Update package index           | `yum makecache` <br> or `dnf makecache`           | `apt update`                     | Updates local package metadata                                | `sudo apt update`               |              |
+| Upgrade all packages           | `yum update` <br> or `dnf upgrade`                | `apt upgrade`                    | Upgrades all installed packages to latest version             | `sudo apt upgrade -y`           |              |
+| Full distribution upgrade      | `dnf upgrade --refresh`                           | `apt full-upgrade`               | Upgrades packages and handles dependencies (including kernel) | `sudo apt full-upgrade -y`      |              |
+| Install a package              | `yum install pkg` <br> or `dnf install pkg`       | `apt install pkg`                | Installs a package                                            | `sudo apt install nginx -y`     |              |
+| Reinstall a package            | `yum reinstall pkg` <br> or `dnf reinstall pkg`   | `apt reinstall pkg`              | Reinstalls the given package                                  | `sudo apt reinstall curl`       |              |
+| Remove a package               | `yum remove pkg` <br> or `dnf remove pkg`         | `apt remove pkg`                 | Removes package (keeps config files)                          | `sudo apt remove nginx`         |              |
+| Remove package + config        | `dnf remove pkg`                                  | `apt purge pkg`                  | Removes package along with config files                       | `sudo apt purge nginx`          |              |
+| Search for a package           | `yum search pkg` <br> or `dnf search pkg`         | `apt search pkg`                 | Searches package repositories                                 | `apt search apache2`            |              |
+| Show package info              | `yum info pkg` <br> or `dnf info pkg`             | `apt show pkg`                   | Displays details of a package                                 | `apt show curl`                 |              |
+| List installed packages        | `yum list installed` <br> or `dnf list installed` | `dpkg -l`                        | Shows all installed packages                                  | \`dpkg -l                       | grep nginx\` |
+| List files in package          | `rpm -ql pkg`                                     | `dpkg -L pkg`                    | Shows installed files of a package                            | `dpkg -L apache2`               |              |
+| Find which package owns a file | `rpm -qf /path/file`                              | `dpkg -S /path/file`             | Finds which package provides a file                           | `dpkg -S /bin/ls`               |              |
+| Clean cache                    | `yum clean all` <br> or `dnf clean all`           | `apt clean` <br> `apt autoclean` | Removes cached package files                                  | `sudo apt clean`                |              |
+| Remove unused deps             | `yum autoremove` <br> or `dnf autoremove`         | `apt autoremove`                 | Removes unused dependencies                                   | `sudo apt autoremove -y`        |              |
+| List repos                     | `yum repolist` <br> or `dnf repolist`             | `ls /etc/apt/sources.list.d/`    | Shows enabled repositories                                    | `cat /etc/apt/sources.list`     |              |
+| Install from file              | `rpm -ivh pkg.rpm`                                | `dpkg -i pkg.deb`                | Installs a local package file                                 | `sudo dpkg -i file.deb`         |              |
+| Fix broken deps                | `yum check` <br> or `dnf check`                   | `apt --fix-broken install`       | Repairs dependency issues                                     | `sudo apt --fix-broken install` |              |
